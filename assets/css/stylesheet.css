@@ -1,0 +1,30 @@
+.body {
+   padding-left: 50px;
+   padding-right: 50px;
+   display: flex;
+   justify-content: center;
+   
+}
+
+h2
+{
+   color:darkcyan;
+}
+
+.global 
+{
+   display: flex;
+   justify-content: center;
+   border: solid;
+   border-color:darkcyan;
+   width: 70%;
+   padding-top: 80px;
+   padding-bottom: 80px;
+   font-family:Georgia;
+   background-color:beige;
+}
+
+.formulaire
+{
+   margin-right: 200px;
+}
