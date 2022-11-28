@@ -1,36 +1,27 @@
 <?php
 require_once ('connexion_gsb.php');
 
-// Session start pour récupérer l'id 
-//$id_session = $_POST
+// Session start pour récupérer l'email pour ensutie récupérer l'id liée à l'email
+session_start();
+$email=$_SESSION['email'];
+$idutilisateur=$_SESSION['ID_utilisateur'];
+echo $email;
+echo $idutilisateur;
 
-//$_SESSION['favcolor'] = 'green';
-// récupération de l'id de la session 
-//$id_session=$_SESSION['email'];
-//récupération des données
-$dateDebut = $_POST["dateDebut"];
+//récupération des données avant d'insert to BDD
+
+$dateDebut=$_POST["dateDebut"];
 $dateFin=$_POST["dateFin"];
 $nbNuit=$_POST["nbNuit"];
 $prixTotalNuit=$_POST["prixTotalNuit"];
 $nbRepas=$_POST["nbRepas"];
 $prixTotalRepas=$_POST["prixTotalRepas"];
 $nbKm=$_POST["nbKm"];
-$prixTotalKM=$_POST['prixTotalKm'];
 $descriptionExtra=$_POST["descriptionExtra"];
 $prixExtra=$_POST["prixExtra"];
 $choixCv=$_POST["cv-select"];
-
-echo "$dateDebut <br/>";
-echo "$dateFin <br/>";
-echo "$nbNuit<br/>";
-echo "$prixTotalNuit<br/>";
-echo "$nbRepas<br/>";
-echo "$prixTotalRepas<br/>";
-echo "$nbKm<br/>";
-echo "$descriptionExtra<br/>";
-echo "$prixExtra<br/>";
-echo "$choixCv<br/>";
-
+$email=$_SESSION['email'];
+$idutilisateur=$_SESSION['ID_utilisateur'];
 // permet de choisir le taux d'indemnité selon le choix du véhicule fait dans le formulaire 
 switch ($choixCv)
     {
@@ -45,12 +36,29 @@ switch ($choixCv)
     }
     echo "$totalIndemnite1";
     
+
+
+
+
+echo"$dateDebut DD <br/>";
+echo"$dateFin  DF <br/>";
+echo"$nbNuit NUITS  <br/>";
+echo"$prixTotalNuit Prix nuit<br/>";
+echo"$nbRepas NB repas<br/>";
+echo"$prixTotalRepas total repas<br/>";
+echo"$nbKm nb km<br/>";
+echo"$descriptionExtra extra<br/>";
+echo"$prixExtra prix extra<br/>";
+echo"$choixCv choix cv<br/>";
+echo"$email mail<br/>";
+echo "$idutilisateur";
+
+
+    
     //insert values in bdd valeurs après le INSERT INTO = valeurs de la bdd)
-    $reponse = $bdd->prepare ("INSERT INTO fiche_frais (Date_debut,Date_fin,Nombre_nuit,Total_coût_nuit,Nombre_repas,Total_coût_repas,Distance_km,Total_indemnite_km,Description_autre_depence,Autre_depence_coût) VALUES (?,?,?,?,?,?,?,?,?,?)");
-    $reponse->execute(array($dateDebut,$dateFin,$nbNuit,$prixTotalNuit,$nbRepas,$prixTotalRepas,$nbKm,$choixCv,$descriptionExtra,$prixExtra));
+    $reponse = $bdd->prepare ("INSERT INTO fiche_frais (ID_utilisateur,Date_debut,Date_fin,Nombre_nuit,Total_cout_nuit,Nombre_repas,Total_cout_repas,Distance_km,Total_indemnite_km,Description_autre_depence,Autre_depence_cout,Email) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+    $reponse->execute(array($idutilisateur,$dateDebut,$dateFin,$nbNuit,$prixTotalNuit,$nbRepas,$prixTotalRepas,$nbKm,$totalIndemnite1,$descriptionExtra,$prixExtra,$email));
         $resultat =$reponse ->fetch ();
         echo "$resultat";
-
-        // venir recuperer l'id de la session, pour le rentrer dans la table fiche de frais. à recupérer dans la table user, et gérer avec la session d'ouverte
-
 ?>
+
