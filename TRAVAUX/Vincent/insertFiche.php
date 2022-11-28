@@ -22,6 +22,8 @@ $prixExtra=$_POST["prixExtra"];
 $choixCv=$_POST["cv-select"];
 $email=$_SESSION['email'];
 $idutilisateur=$_SESSION['ID_utilisateur'];
+//$date = date('Y-m-d H:i:s');
+
 // permet de choisir le taux d'indemnité selon le choix du véhicule fait dans le formulaire 
 switch ($choixCv)
     {
@@ -52,7 +54,7 @@ echo"$prixExtra prix extra<br/>";
 echo"$choixCv choix cv<br/>";
 echo"$email mail<br/>";
 echo "$idutilisateur";
-
+//echo "$date";
 
     
     //insert values in bdd valeurs après le INSERT INTO = valeurs de la bdd)
