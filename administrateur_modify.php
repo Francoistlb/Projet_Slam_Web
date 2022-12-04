@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -29,16 +32,14 @@
             <div class="centrage col-md-7">
               <div class="card-body text-center">
                <!-- Ouverture de la session --> 
-              <?php
-                  session_start();
-
-                  if (!isset ($_SESSION['email']) && $_SESSION['role'] !=1)
+               <?php
+                  if (!isset ($_SESSION['email']) && $_SESSION['role'] !=4)
                      {
                         echo "Vous n'êtes pas connecté";
                      } else {
                         $email=$_SESSION['email'];
                         echo "Bonjour $email <br> <br>";
-                        echo "Profil comptable <br> <br>";
+                        echo "Profil administrateur <br> <br>";
                         echo "<a href='kill_session.php'> Déconnexion </a>" ;
                      }
                   ?>
@@ -50,8 +51,32 @@
       </div>
       <div class="contenu">
         <div class="ligne"></div>
+        <div class="varelements">
+          <h2 class=" text-center"> Modifier un utilisateur GSB : </h2>     
+        
         <div>
-          <h1 class=" text-center"> Saisir le code ci-dessous </h1>      
+        <p> ID utilisateur en cours de traitement :  <strong><?php echo $_GET['Id'];  ?></strong></p>
+        <form ACTION="administrateur_modify_insert_data.php" method="get">       
+        <INPUT TYPE="text" NAME="Id" VALUE=<?php echo $_GET['Id']?> hidden >
+        <label> Mail  : </label><INPUT TYPE="mail" NAME="Mail" VALUE=<?php echo $_GET['Mail']?> >
+        <label> Nom : </label><INPUT TYPE="text" NAME="Nom" VALUE=<?php echo $_GET['Nom']?> ><br></br>
+        <label> Prénom : </label><INPUT TYPE="text" NAME="Pseudo" VALUE=<?php echo $_GET['Pseudo']?> >
+        <label> N° Téléphone : </label><INPUT TYPE="text" NAME="Telephone" VALUE=<?php echo $_GET['Tel']?> ><br></br>
+        <label> Rôle : </label>
+        <select name="Role" id="Role" VALUE="Admin" required>
+            <option>--- Choisissez un role ---</option>
+            <option>Visiteur</option>
+            <option>Commerciaux</option>
+            <option>Responsable</option>
+            <option>Comptable</option>
+            <option>Admin</option>
+        </select><br></br>
+
+        <input type="submit" value="Modifier" NAME="Modifier" ><br><br>
+    </form>
+        </div> 
+        <a href="administrateur_liste_user.php" class="nvlff"> Retour </a><br><br>
+
         </div>
       </div>
     </div>
@@ -60,3 +85,18 @@
 </body>
 </html>
 
+
+
+
+<body>
+
+    
+
+</body>
+
+<?php echo $_GET['Id']?>
+<?php echo $_GET['Mail']?>
+<?php echo $_GET['Nom']?>
+<?php echo $_GET['Pseudo']?>
+<?php echo $_GET['Tel']?>
+<?php echo $_GET['Role']?>

@@ -1,7 +1,7 @@
 <?php
 
 try {
-   $bdd = new PDO ('mysql:host=localhost;dbname=gsb;','root','');
+   $bdd = new PDO ('mysql:host=localhost;dbname=gsb3;','root','');
    $bdd -> setAttribute (PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
    $bdd -> exec("set character set utf8");
 }

@@ -116,4 +116,34 @@ body {
     margin-right: auto;
   }
 
+  .varelements {
+    text-align: center;
+    padding-top: 50px;
+  }
+
+  .nvlff{
+    background-color: #1c87c9;
+    border: none;
+    color: white;
+    padding: 10px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+
+  
+  .fichefrais{
+    padding-top: 50px;
+    padding-left: 150px;
+  }
+
+  .legend{
+    text-decoration: underline;
+  }
+
+  
+
 /*# sourceMappingURL=login.css.map */
